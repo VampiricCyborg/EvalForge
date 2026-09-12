@@ -12,7 +12,7 @@ from groq import Groq
 from evalforge.schema import EvalResult, ModelOutput, TestCase
 from evalforge.scorers.base import Scorer
 
-DEFAULT_MODEL = "llama-3.3-70b-versatile"
+DEFAULT_MODEL = "openai/gpt-oss-120b"
 DEFAULT_VARIANCE_THRESHOLD = 0.15
 DEFAULT_NUM_CALLS = 3
 MAX_RETRIES = 2

@@ -1,0 +1,665 @@
+{
+  "generated_at": "2026-09-12T12:32:55.581202+00:00",
+  "dataset": {
+    "file": "tests.json",
+    "hash": "6a2f9c42d0c5bccd",
+    "test_cases": [
+      {
+        "id": "capital-france",
+        "input": "What is the capital of France?",
+        "reference": "Paris",
+        "metadata": {
+          "category": "factual"
+        }
+      },
+      {
+        "id": "arithmetic-basic",
+        "input": "What is 17 times 3?",
+        "reference": "51",
+        "metadata": {
+          "category": "math"
+        }
+      },
+      {
+        "id": "explain-photosynthesis",
+        "input": "In one sentence, what is photosynthesis?",
+        "reference": "Photosynthesis is the process by which plants convert sunlight into chemical energy.",
+        "metadata": {
+          "category": "explanation"
+        }
+      },
+      {
+        "id": "list-primes",
+        "input": "List the first four prime numbers.",
+        "reference": "2, 3, 5, 7",
+        "metadata": {
+          "category": "factual"
+        }
+      },
+      {
+        "id": "summarize-water-cycle",
+        "input": "Summarize the water cycle in one sentence.",
+        "reference": "Water evaporates from the surface, condenses into clouds, and falls back to earth as precipitation.",
+        "metadata": {
+          "category": "explanation"
+        }
+      },
+      {
+        "id": "translate-greeting",
+        "input": "Translate 'good morning' into Spanish.",
+        "reference": "Buenos dias",
+        "metadata": {
+          "category": "translation"
+        }
+      }
+    ]
+  },
+  "runs": {
+    "baseline": {
+      "run_id": "showcase-v1",
+      "timestamp": "2026-09-12T12:30:36.761520+00:00",
+      "dataset_hash": "6a2f9c42d0c5bccd",
+      "outputs_file": "outputs.json",
+      "aggregate": {
+        "test_case_count": 6,
+        "methods": {
+          "exact_match": {
+            "mean_score": 0.6666666666666666,
+            "count": 6
+          },
+          "llm_judge": {
+            "mean_score": 0.9972222222222222,
+            "count": 6
+          },
+          "semantic": {
+            "mean_score": 0.9785940150419871,
+            "count": 6
+          }
+        },
+        "high_variance_count": 0
+      },
+      "model_outputs": {
+        "capital-france": "Paris",
+        "arithmetic-basic": "51",
+        "explain-photosynthesis": "Photosynthesis is how plants turn sunlight into chemical energy.",
+        "list-primes": "2, 3, 5, 7",
+        "summarize-water-cycle": "Water evaporates from the surface, forms clouds, and returns to earth as rain or snow.",
+        "translate-greeting": "Buenos dias"
+      },
+      "results": [
+        {
+          "test_case_id": "capital-france",
+          "method": "exact_match",
+          "score": 1.0,
+          "latency_ms": 0.06299999949987978,
+          "raw_output": {
+            "normalized_reference": "paris",
+            "normalized_output": "paris",
+            "jaccard_token_overlap": 1.0
+          }
+        },
+        {
+          "test_case_id": "capital-france",
+          "method": "semantic",
+          "score": 1.0,
+          "latency_ms": 64.90649999977904,
+          "raw_output": {
+            "raw_cosine_similarity": 1.0,
+            "model": "all-MiniLM-L6-v2"
+          }
+        },
+        {
+          "test_case_id": "capital-france",
+          "method": "llm_judge",
+          "score": 1.0,
+          "latency_ms": 2376.6208000015467,
+          "raw_output": {
+            "scores": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "std_dev": 0.0,
+            "reasonings": [
+              "The model output exactly matches the reference answer, providing the correct capital of France.",
+              "The model output exactly matches the reference answer, providing the correct capital of France.",
+              "The model output exactly matches the reference answer 'Paris', providing a fully correct response."
+            ],
+            "high_variance": false
+          }
+        },
+        {
+          "test_case_id": "arithmetic-basic",
+          "method": "exact_match",
+          "score": 1.0,
+          "latency_ms": 0.05830000009154901,
+          "raw_output": {
+            "normalized_reference": "51",
+            "normalized_output": "51",
+            "jaccard_token_overlap": 1.0
+          }
+        },
+        {
+          "test_case_id": "arithmetic-basic",
+          "method": "semantic",
+          "score": 1.0,
+          "latency_ms": 377.08480000219424,
+          "raw_output": {
+            "raw_cosine_similarity": 1.0000001192092896,
+            "model": "all-MiniLM-L6-v2"
+          }
+        },
+        {
+          "test_case_id": "arithmetic-basic",
+          "method": "llm_judge",
+          "score": 1.0,
+          "latency_ms": 1733.7465999989945,
+          "raw_output": {
+            "scores": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "std_dev": 0.0,
+            "reasonings": [
+              "The model output exactly matches the reference answer, providing the correct result.",
+              "The model output matches the reference answer exactly, providing the correct result.",
+              "The model output matches the reference answer exactly, providing the correct result."
+            ],
+            "high_variance": false
+          }
+        },
+        {
+          "test_case_id": "explain-photosynthesis",
+          "method": "exact_match",
+          "score": 0.0,
+          "latency_ms": 0.15250000069499947,
+          "raw_output": {
+            "normalized_reference": "photosynthesis is the process by which plants convert sunlight into chemical energy.",
+            "normalized_output": "photosynthesis is how plants turn sunlight into chemical energy.",
+            "jaccard_token_overlap": 0.5
+          }
+        },
+        {
+          "test_case_id": "explain-photosynthesis",
+          "method": "semantic",
+          "score": 0.9510326385498047,
+          "latency_ms": 96.88319999986561,
+          "raw_output": {
+            "raw_cosine_similarity": 0.9510326385498047,
+            "model": "all-MiniLM-L6-v2"
+          }
+        },
+        {
+          "test_case_id": "explain-photosynthesis",
+          "method": "llm_judge",
+          "score": 1.0,
+          "latency_ms": 1835.6285999980173,
+          "raw_output": {
+            "scores": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "std_dev": 0.0,
+            "reasonings": [
+              "The model output conveys the same meaning as the reference answer in a single sentence, accurately describing photosynthesis.",
+              "The model output accurately restates the reference definition in a single sentence, preserving the essential meaning.",
+              "The model output conveys the same meaning as the reference answer, correctly describing photosynthesis in one sentence."
+            ],
+            "high_variance": false
+          }
+        },
+        {
+          "test_case_id": "list-primes",
+          "method": "exact_match",
+          "score": 1.0,
+          "latency_ms": 0.05880000026081689,
+          "raw_output": {
+            "normalized_reference": "2, 3, 5, 7",
+            "normalized_output": "2, 3, 5, 7",
+            "jaccard_token_overlap": 1.0
+          }
+        },
+        {
+          "test_case_id": "list-primes",
+          "method": "semantic",
+          "score": 1.0,
+          "latency_ms": 194.16590000037104,
+          "raw_output": {
+            "raw_cosine_similarity": 1.0000001192092896,
+            "model": "all-MiniLM-L6-v2"
+          }
+        },
+        {
+          "test_case_id": "list-primes",
+          "method": "llm_judge",
+          "score": 1.0,
+          "latency_ms": 1714.7613000015554,
+          "raw_output": {
+            "scores": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "std_dev": 0.0,
+            "reasonings": [
+              "The model output exactly matches the reference answer, correctly listing the first four prime numbers.",
+              "The model output exactly matches the reference answer, correctly listing the first four prime numbers.",
+              "The model output exactly matches the reference answer, providing the correct first four prime numbers."
+            ],
+            "high_variance": false
+          }
+        },
+        {
+          "test_case_id": "summarize-water-cycle",
+          "method": "exact_match",
+          "score": 0.0,
+          "latency_ms": 0.07339999865507707,
+          "raw_output": {
+            "normalized_reference": "water evaporates from the surface, condenses into clouds, and falls back to earth as precipitation.",
+            "normalized_output": "water evaporates from the surface, forms clouds, and returns to earth as rain or snow.",
+            "jaccard_token_overlap": 0.5
+          }
+        },
+        {
+          "test_case_id": "summarize-water-cycle",
+          "method": "semantic",
+          "score": 0.9205314517021179,
+          "latency_ms": 98.78850000313832,
+          "raw_output": {
+            "raw_cosine_similarity": 0.9205314517021179,
+            "model": "all-MiniLM-L6-v2"
+          }
+        },
+        {
+          "test_case_id": "summarize-water-cycle",
+          "method": "llm_judge",
+          "score": 0.9833333333333333,
+          "latency_ms": 2428.9338999988104,
+          "raw_output": {
+            "scores": [
+              1.0,
+              1.0,
+              0.95
+            ],
+            "std_dev": 0.028867513459481315,
+            "reasonings": [
+              "The model output accurately captures evaporation, cloud formation, and return as precipitation, matching the reference meaning despite minor phrasing differences.",
+              "The model output accurately captures the key steps of the water cycle as in the reference, using equivalent phrasing.",
+              "The model output captures the essential steps of the water cycle with correct meaning, matching the reference despite minor wording differences."
+            ],
+            "high_variance": false
+          }
+        },
+        {
+          "test_case_id": "translate-greeting",
+          "method": "exact_match",
+          "score": 1.0,
+          "latency_ms": 0.06370000119204633,
+          "raw_output": {
+            "normalized_reference": "buenos dias",
+            "normalized_output": "buenos dias",
+            "jaccard_token_overlap": 1.0
+          }
+        },
+        {
+          "test_case_id": "translate-greeting",
+          "method": "semantic",
+          "score": 1.0,
+          "latency_ms": 89.21439999903669,
+          "raw_output": {
+            "raw_cosine_similarity": 1.0,
+            "model": "all-MiniLM-L6-v2"
+          }
+        },
+        {
+          "test_case_id": "translate-greeting",
+          "method": "llm_judge",
+          "score": 1.0,
+          "latency_ms": 1923.196800002188,
+          "raw_output": {
+            "scores": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "std_dev": 0.0,
+            "reasonings": [
+              "The model output exactly matches the reference answer, providing the correct translation.",
+              "The model output exactly matches the reference answer, providing the correct translation.",
+              "The model output exactly matches the reference answer 'Buenos dias'."
+            ],
+            "high_variance": false
+          }
+        }
+      ]
+    },
+    "current": {
+      "run_id": "showcase-v2",
+      "timestamp": "2026-09-12T12:31:38.224421+00:00",
+      "dataset_hash": "6a2f9c42d0c5bccd",
+      "outputs_file": "outputs_v2.json",
+      "aggregate": {
+        "test_case_count": 6,
+        "methods": {
+          "exact_match": {
+            "mean_score": 0.5,
+            "count": 6
+          },
+          "llm_judge": {
+            "mean_score": 0.6583333333333333,
+            "count": 6
+          },
+          "semantic": {
+            "mean_score": 0.8437302112579346,
+            "count": 6
+          }
+        },
+        "high_variance_count": 0
+      },
+      "model_outputs": {
+        "capital-france": "Lyon",
+        "arithmetic-basic": "51",
+        "explain-photosynthesis": "Photosynthesis is when animals break down food in their stomachs to release energy.",
+        "list-primes": "2, 3, 5, 7",
+        "summarize-water-cycle": "Water evaporates from the surface, forms clouds, and returns to earth as rain or snow.",
+        "translate-greeting": "Buenos dias"
+      },
+      "results": [
+        {
+          "test_case_id": "capital-france",
+          "method": "exact_match",
+          "score": 0.0,
+          "latency_ms": 0.046799999836366624,
+          "raw_output": {
+            "normalized_reference": "paris",
+            "normalized_output": "lyon",
+            "jaccard_token_overlap": 0.0
+          }
+        },
+        {
+          "test_case_id": "capital-france",
+          "method": "semantic",
+          "score": 0.49678725004196167,
+          "latency_ms": 44.30349999893224,
+          "raw_output": {
+            "raw_cosine_similarity": 0.49678725004196167,
+            "model": "all-MiniLM-L6-v2"
+          }
+        },
+        {
+          "test_case_id": "capital-france",
+          "method": "llm_judge",
+          "score": 0.0,
+          "latency_ms": 2362.4273000023095,
+          "raw_output": {
+            "scores": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "std_dev": 0.0,
+            "reasonings": [
+              "The model answered 'Lyon' whereas the correct capital of France is 'Paris', so the output is completely incorrect.",
+              "The model output 'Lyon' is incorrect; the correct capital of France is Paris as given in the reference answer.",
+              "The model answered 'Lyon' while the correct capital of France is 'Paris', which is entirely incorrect."
+            ],
+            "high_variance": false
+          }
+        },
+        {
+          "test_case_id": "arithmetic-basic",
+          "method": "exact_match",
+          "score": 1.0,
+          "latency_ms": 0.03850000211969018,
+          "raw_output": {
+            "normalized_reference": "51",
+            "normalized_output": "51",
+            "jaccard_token_overlap": 1.0
+          }
+        },
+        {
+          "test_case_id": "arithmetic-basic",
+          "method": "semantic",
+          "score": 1.0,
+          "latency_ms": 26.658599999791477,
+          "raw_output": {
+            "raw_cosine_similarity": 1.0000001192092896,
+            "model": "all-MiniLM-L6-v2"
+          }
+        },
+        {
+          "test_case_id": "arithmetic-basic",
+          "method": "llm_judge",
+          "score": 1.0,
+          "latency_ms": 1792.791700001544,
+          "raw_output": {
+            "scores": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "std_dev": 0.0,
+            "reasonings": [
+              "The model output exactly matches the reference answer, providing the correct result.",
+              "The model output exactly matches the reference answer, providing the correct result.",
+              "The model output matches the reference answer exactly, providing the correct result."
+            ],
+            "high_variance": false
+          }
+        },
+        {
+          "test_case_id": "explain-photosynthesis",
+          "method": "exact_match",
+          "score": 0.0,
+          "latency_ms": 0.04890000127488747,
+          "raw_output": {
+            "normalized_reference": "photosynthesis is the process by which plants convert sunlight into chemical energy.",
+            "normalized_output": "photosynthesis is when animals break down food in their stomachs to release energy.",
+            "jaccard_token_overlap": 0.13636363636363635
+          }
+        },
+        {
+          "test_case_id": "explain-photosynthesis",
+          "method": "semantic",
+          "score": 0.6450625658035278,
+          "latency_ms": 118.6193000030471,
+          "raw_output": {
+            "raw_cosine_similarity": 0.6450625658035278,
+            "model": "all-MiniLM-L6-v2"
+          }
+        },
+        {
+          "test_case_id": "explain-photosynthesis",
+          "method": "llm_judge",
+          "score": 0.0,
+          "latency_ms": 2428.918800000247,
+          "raw_output": {
+            "scores": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "std_dev": 0.0,
+            "reasonings": [
+              "The model's answer is entirely incorrect, describing animal digestion instead of the plant process of converting sunlight to chemical energy.",
+              "The model output is factually incorrect, describing animal digestion instead of the plant process of converting sunlight to chemical energy, thus not matching the reference answer.",
+              "The model answer incorrectly describes animal digestion rather than the plant process of converting sunlight into chemical energy, which is wholly inaccurate."
+            ],
+            "high_variance": false
+          }
+        },
+        {
+          "test_case_id": "list-primes",
+          "method": "exact_match",
+          "score": 1.0,
+          "latency_ms": 0.03680000008898787,
+          "raw_output": {
+            "normalized_reference": "2, 3, 5, 7",
+            "normalized_output": "2, 3, 5, 7",
+            "jaccard_token_overlap": 1.0
+          }
+        },
+        {
+          "test_case_id": "list-primes",
+          "method": "semantic",
+          "score": 1.0,
+          "latency_ms": 25.24750000156928,
+          "raw_output": {
+            "raw_cosine_similarity": 1.0000001192092896,
+            "model": "all-MiniLM-L6-v2"
+          }
+        },
+        {
+          "test_case_id": "list-primes",
+          "method": "llm_judge",
+          "score": 1.0,
+          "latency_ms": 2137.4388999975054,
+          "raw_output": {
+            "scores": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "std_dev": 0.0,
+            "reasonings": [
+              "The model output exactly matches the reference answer, correctly listing the first four prime numbers.",
+              "The model output exactly matches the reference answer, providing the correct first four prime numbers.",
+              "The model output exactly matches the reference answer, providing the correct first four prime numbers."
+            ],
+            "high_variance": false
+          }
+        },
+        {
+          "test_case_id": "summarize-water-cycle",
+          "method": "exact_match",
+          "score": 0.0,
+          "latency_ms": 0.06319999738479964,
+          "raw_output": {
+            "normalized_reference": "water evaporates from the surface, condenses into clouds, and falls back to earth as precipitation.",
+            "normalized_output": "water evaporates from the surface, forms clouds, and returns to earth as rain or snow.",
+            "jaccard_token_overlap": 0.5
+          }
+        },
+        {
+          "test_case_id": "summarize-water-cycle",
+          "method": "semantic",
+          "score": 0.9205314517021179,
+          "latency_ms": 28.084499997930834,
+          "raw_output": {
+            "raw_cosine_similarity": 0.9205314517021179,
+            "model": "all-MiniLM-L6-v2"
+          }
+        },
+        {
+          "test_case_id": "summarize-water-cycle",
+          "method": "llm_judge",
+          "score": 0.95,
+          "latency_ms": 2368.813400000363,
+          "raw_output": {
+            "scores": [
+              0.95,
+              0.95,
+              0.95
+            ],
+            "std_dev": 0.0,
+            "reasonings": [
+              "The model output accurately captures the key steps of the water cycle and aligns with the reference meaning, with only minor wording differences.",
+              "The model output accurately captures the core steps of the water cycle, matching the reference meaning despite minor wording differences.",
+              "The model output captures the essential steps of the water cycle—evaporation, cloud formation, and precipitation—though phrasing differs slightly from the reference."
+            ],
+            "high_variance": false
+          }
+        },
+        {
+          "test_case_id": "translate-greeting",
+          "method": "exact_match",
+          "score": 1.0,
+          "latency_ms": 0.030699997296324,
+          "raw_output": {
+            "normalized_reference": "buenos dias",
+            "normalized_output": "buenos dias",
+            "jaccard_token_overlap": 1.0
+          }
+        },
+        {
+          "test_case_id": "translate-greeting",
+          "method": "semantic",
+          "score": 1.0,
+          "latency_ms": 24.324199999682605,
+          "raw_output": {
+            "raw_cosine_similarity": 1.0,
+            "model": "all-MiniLM-L6-v2"
+          }
+        },
+        {
+          "test_case_id": "translate-greeting",
+          "method": "llm_judge",
+          "score": 1.0,
+          "latency_ms": 2095.823899999232,
+          "raw_output": {
+            "scores": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "std_dev": 0.0,
+            "reasonings": [
+              "The model output exactly matches the reference answer, providing the correct translation.",
+              "The model output exactly matches the reference answer, providing the correct translation.",
+              "The model output exactly matches the reference answer, providing the correct Spanish translation."
+            ],
+            "high_variance": false
+          }
+        }
+      ]
+    }
+  },
+  "comparison": {
+    "baseline_run_id": "showcase-v1",
+    "current_run_id": "showcase-v2",
+    "threshold": 0.1,
+    "regressions": [
+      {
+        "test_case_id": "capital-france",
+        "method": "exact_match",
+        "baseline_score": 1.0,
+        "current_score": 0.0,
+        "delta": -1.0
+      },
+      {
+        "test_case_id": "capital-france",
+        "method": "llm_judge",
+        "baseline_score": 1.0,
+        "current_score": 0.0,
+        "delta": -1.0
+      },
+      {
+        "test_case_id": "capital-france",
+        "method": "semantic",
+        "baseline_score": 1.0,
+        "current_score": 0.49678725004196167,
+        "delta": -0.5032127499580383
+      },
+      {
+        "test_case_id": "explain-photosynthesis",
+        "method": "llm_judge",
+        "baseline_score": 1.0,
+        "current_score": 0.0,
+        "delta": -1.0
+      },
+      {
+        "test_case_id": "explain-photosynthesis",
+        "method": "semantic",
+        "baseline_score": 0.9510326385498047,
+        "current_score": 0.6450625658035278,
+        "delta": -0.30597007274627686
+      }
+    ],
+    "regression_count": 5,
+    "compared_count": 18,
+    "dataset_mismatch": false,
+    "warnings": []
+  }
+}

@@ -162,7 +162,7 @@ def test_prompt_includes_input_reference_and_output(case, output):
 
     kwargs = client.chat.completions.create.call_args.kwargs
     assert kwargs["response_format"] == {"type": "json_object"}
-    assert kwargs["model"] == "llama-3.3-70b-versatile"
+    assert kwargs["model"] == "openai/gpt-oss-120b"
     user_prompt = kwargs["messages"][1]["content"]
     assert "What is 2+2?" in user_prompt
     assert "4" in user_prompt

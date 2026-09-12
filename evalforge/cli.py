@@ -8,6 +8,7 @@ import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 
+from groq import APIError
 from pydantic import ValidationError
 from rich.console import Console
 from rich.table import Table
@@ -215,6 +216,9 @@ def main(argv: list[str] | None = None) -> int:
         return args.handler(args, console)
     except (CliError, RunNotFoundError, JudgeError) as exc:
         console.print(f"[red]Error:[/red] {exc}")
+        return EXIT_ERROR
+    except APIError as exc:
+        console.print(f"[red]Groq API error:[/red] {exc}")
         return EXIT_ERROR
 
 

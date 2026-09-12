@@ -166,7 +166,7 @@ Test cases with no matching output are skipped with a warning rather than failin
 | --- | --- | --- |
 | `exact_match` | String equality after lowercasing and whitespace normalization. Binary 1.0 / 0.0. Also reports Jaccard token overlap in `raw_output` as a diagnostic, so near-misses are visible without affecting the score. | Free, instant |
 | `semantic` | Cosine similarity between `all-MiniLM-L6-v2` embeddings of the reference and the output, clamped to `[0, 1]`. Catches correct answers phrased differently. | Free, local |
-| `llm_judge` | A Groq-hosted model (`llama-3.3-70b-versatile`) grades the output against the input and reference on a 0–1 scale, sampled 3 times. | Groq API |
+| `llm_judge` | A Groq-hosted model (`openai/gpt-oss-120b`) grades the output against the input and reference on a 0–1 scale, sampled 3 times. | Groq API |
 
 ## The judge variance design decision
 
