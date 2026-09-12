@@ -3,6 +3,7 @@
 import argparse
 import hashlib
 import json
+import sqlite3
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
@@ -16,6 +17,7 @@ from evalforge.regression import DEFAULT_THRESHOLD, RegressionComparator
 from evalforge.reporting import build_aggregate, render_comparison, render_run_report
 from evalforge.schema import EvalResult, ModelOutput, RunReport, TestCase
 from evalforge.scorers import SCORERS
+from evalforge.scorers.llm_judge import JudgeError
 from evalforge.storage import DEFAULT_DB_PATH, RunNotFoundError, Storage
 
 EXIT_OK = 0
@@ -114,7 +116,13 @@ def cmd_run(args: argparse.Namespace, console: Console) -> int:
         dataset_hash=compute_dataset_hash(test_cases),
     )
 
-    Storage(args.db).save_run(report)
+    try:
+        Storage(args.db).save_run(report)
+    except sqlite3.IntegrityError as exc:
+        raise CliError(
+            f"could not save run {report.run_id!r}: {exc}."
+            " Run ids must be unique - omit --run-id to generate one."
+        ) from exc
     render_run_report(report, console)
     console.print(f"\nSaved run [bold]{report.run_id}[/bold] to {args.db}")
     return EXIT_OK
@@ -205,7 +213,7 @@ def main(argv: list[str] | None = None) -> int:
     console = Console()
     try:
         return args.handler(args, console)
-    except (CliError, RunNotFoundError) as exc:
+    except (CliError, RunNotFoundError, JudgeError) as exc:
         console.print(f"[red]Error:[/red] {exc}")
         return EXIT_ERROR
 

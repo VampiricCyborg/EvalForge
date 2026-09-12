@@ -163,6 +163,21 @@ class TestRunCommand:
         assert exit_code == EXIT_ERROR
         assert "no test cases" in capsys.readouterr().out.lower()
 
+    def test_duplicate_run_id_errors_cleanly(self, capsys, db, dataset, good_outputs):
+        argv = [
+            "run",
+            "--dataset", dataset,
+            "--outputs", good_outputs,
+            "--scorers", "exact_match",
+            "--run-id", "r1",
+            "--db", db,
+        ]
+        assert main(argv) == EXIT_OK
+        capsys.readouterr()
+
+        assert main(argv) == EXIT_ERROR
+        assert "unique" in capsys.readouterr().out.lower()
+
     def test_llm_judge_without_api_key_errors_cleanly(
         self, capsys, monkeypatch, db, dataset, good_outputs
     ):
