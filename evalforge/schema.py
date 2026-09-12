@@ -39,3 +39,6 @@ class RunReport(BaseModel):
     timestamp: datetime
     results: list[EvalResult]
     aggregate: dict[str, Any]
+    # Identifies the dataset a run was produced from, so run-over-run
+    # comparisons can warn when the underlying test cases changed.
+    dataset_hash: str | None = None
