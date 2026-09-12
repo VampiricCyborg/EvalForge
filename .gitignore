@@ -19,3 +19,4 @@ wheels/
 *.sqlite
 .ruff_cache/
 .mypy_cache/
+run.md

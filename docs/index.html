@@ -320,14 +320,25 @@
     color: var(--text);
   }
 
-  .case-out {
+  .case-io {
+    display: flex;
+    gap: 9px;
     margin-top: 4px;
     font-family: var(--mono);
     font-size: 11.5px;
-    color: var(--faint);
     line-height: 1.45;
-    max-width: 340px;
+    max-width: 360px;
   }
+
+  .io-k {
+    flex: 0 0 50px;
+    color: var(--faint);
+    user-select: none;
+  }
+
+  .io-v { color: var(--muted); }
+  .io-v.is-ref { color: var(--faint); }
+  .io-v.is-bad { color: var(--bad); }
 
   .score {
     font-family: var(--mono);
@@ -509,7 +520,8 @@
     <h2>Real output, not a mockup.</h2>
     <p class="section-sub">
       Two runs over the same six test cases. The second scores a set of deliberately
-      degraded model outputs. Every number below is read from the harness's own export.
+      degraded model outputs — switch runs to see each case's actual output against
+      its reference. Every number below is read from the harness's own export.
     </p>
 
     <div class="segmented" role="tablist" aria-label="Select run" id="run-tabs"></div>
@@ -695,9 +707,33 @@
             : '<span class="pill pill-method">stable</span>';
         }
 
+        // Show what was actually scored next to what it was scored against —
+        // a bare 0.000 is not evidence, "got Lyon / expected Paris" is.
+        // Judge "is this output bad?" on the meaning-aware scorers only.
+        // exact_match is 0.000 for any correct paraphrase, so folding it in
+        // would redden cases the other two scorers agree are fine.
+        var graded = ["semantic", "llm_judge"].filter(function (key) {
+          return methods[key];
+        });
+        if (!graded.length && methods.exact_match) graded = ["exact_match"];
+
+        var worst = graded.reduce(function (acc, key) {
+          return Math.min(acc, methods[key].score);
+        }, 1);
+
+        var io = "";
+        if (output) {
+          io += '<div class="case-io"><span class="io-k">got</span>' +
+            '<span class="io-v' + (worst < 0.5 ? " is-bad" : "") + '">' +
+            esc(output) + "</span></div>";
+        }
+        if (testCase.reference) {
+          io += '<div class="case-io"><span class="io-k">expected</span>' +
+            '<span class="io-v is-ref">' + esc(testCase.reference) + "</span></div>";
+        }
+
         return (
-          "<tr><td><div class=\"case-id\">" + esc(testCase.id) + "</div>" +
-          (output ? '<div class="case-out">&rarr; ' + esc(output) + "</div>" : "") +
+          "<tr><td><div class=\"case-id\">" + esc(testCase.id) + "</div>" + io +
           '</td><td class="num">' + scoreCell(methods.exact_match) +
           '</td><td class="num">' + scoreCell(methods.semantic) +
           '</td><td class="num">' + judgeCell +
