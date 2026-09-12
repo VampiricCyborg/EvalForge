@@ -1,5 +1,9 @@
 # EvalForge
 
+[![Live demo](https://img.shields.io/badge/Live_demo-vampiriccyborg.github.io%2FEvalForge-5e6ad2?style=flat-square)](https://vampiriccyborg.github.io/EvalForge/)
+
+**[View the live demo →](https://vampiriccyborg.github.io/EvalForge/)** — real output from two example runs, including judge variance and regression detection.
+
 EvalForge is a general-purpose eval harness for LLM outputs. You define test cases as plain JSON, bring your model's outputs, and score them with any combination of three methods — exact match, local semantic similarity, and an LLM-as-judge backed by the Groq API — then persist every run to SQLite so you can compare runs over time. The point is the last part: a single eval score tells you very little, but the same dataset scored before and after a prompt change tells you whether you broke something. EvalForge flags per-test-case regressions between any two runs, and because LLM judges are themselves noisy, it calls the judge multiple times per case and reports the spread rather than pretending a single sample is ground truth.
 
 ## Architecture
