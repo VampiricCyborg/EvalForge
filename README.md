@@ -6,6 +6,12 @@
 
 EvalForge is a general-purpose eval harness for LLM outputs. You define test cases as plain JSON, bring your model's outputs, and score them with any combination of three methods — exact match, local semantic similarity, and an LLM-as-judge backed by the Groq API — then persist every run to SQLite so you can compare runs over time. The point is the last part: a single eval score tells you very little, but the same dataset scored before and after a prompt change tells you whether you broke something. EvalForge flags per-test-case regressions between any two runs, and because LLM judges are themselves noisy, it calls the judge multiple times per case and reports the spread rather than pretending a single sample is ground truth.
 
+## Demo
+
+![EvalForge scoring two runs and flagging regressions between them](docs/demo.gif)
+
+Two runs over the same six test cases — the second scores a deliberately degraded set of outputs — then `compare` reports exactly which `(test case, method)` pairs got worse and exits `1`. Every frame is real captured output.
+
 ## Architecture
 
 ```mermaid
@@ -35,7 +41,7 @@ flowchart LR
 Requires Python 3.13+.
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/VampiricCyborg/EvalForge.git
 cd EvalForge
 uv sync
 ```
