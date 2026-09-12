@@ -18,7 +18,7 @@ class SemanticSimilarityScorer(Scorer):
     unclamped value is kept in `raw_output` for diagnostics.
     """
 
-    name = "semantic_similarity"
+    name = "semantic"
 
     def __init__(self, model_name: str = DEFAULT_MODEL_NAME) -> None:
         self._model_name = model_name

@@ -3,7 +3,7 @@ from evalforge.scorers import SCORERS, ExactMatchScorer, SemanticSimilarityScore
 
 def test_registry_maps_names_to_classes():
     assert SCORERS["exact_match"] is ExactMatchScorer
-    assert SCORERS["semantic_similarity"] is SemanticSimilarityScorer
+    assert SCORERS["semantic"] is SemanticSimilarityScorer
 
 
 def test_registry_keys_match_class_name_attribute():

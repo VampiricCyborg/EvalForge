@@ -15,7 +15,7 @@ def test_identical_strings_score_near_one(scorer):
     output = ModelOutput(test_case_id="c1", output="The cat sat on the mat.")
     result = scorer.score(case, output)
     assert result.score > 0.98
-    assert result.method == "semantic_similarity"
+    assert result.method == "semantic"
 
 
 def test_paraphrase_scores_high(scorer):

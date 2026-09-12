@@ -1,0 +1,38 @@
+[
+  {
+    "id": "capital-france",
+    "input": "What is the capital of France?",
+    "reference": "Paris",
+    "metadata": { "category": "factual" }
+  },
+  {
+    "id": "arithmetic-basic",
+    "input": "What is 17 times 3?",
+    "reference": "51",
+    "metadata": { "category": "math" }
+  },
+  {
+    "id": "explain-photosynthesis",
+    "input": "In one sentence, what is photosynthesis?",
+    "reference": "Photosynthesis is the process by which plants convert sunlight into chemical energy.",
+    "metadata": { "category": "explanation" }
+  },
+  {
+    "id": "list-primes",
+    "input": "List the first four prime numbers.",
+    "reference": "2, 3, 5, 7",
+    "metadata": { "category": "factual" }
+  },
+  {
+    "id": "summarize-water-cycle",
+    "input": "Summarize the water cycle in one sentence.",
+    "reference": "Water evaporates from the surface, condenses into clouds, and falls back to earth as precipitation.",
+    "metadata": { "category": "explanation" }
+  },
+  {
+    "id": "translate-greeting",
+    "input": "Translate 'good morning' into Spanish.",
+    "reference": "Buenos dias",
+    "metadata": { "category": "translation" }
+  }
+]

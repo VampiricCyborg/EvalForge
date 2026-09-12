@@ -89,7 +89,7 @@ def test_regressions_detected_per_method(storage, comparator):
         "base",
         {
             ("c1", "exact_match"): 1.0,
-            ("c1", "semantic_similarity"): 0.9,
+            ("c1", "semantic"): 0.9,
             ("c1", "llm_judge"): 0.8,
         },
     )
@@ -97,7 +97,7 @@ def test_regressions_detected_per_method(storage, comparator):
         "curr",
         {
             ("c1", "exact_match"): 0.0,  # regression
-            ("c1", "semantic_similarity"): 0.88,  # noise
+            ("c1", "semantic"): 0.88,  # noise
             ("c1", "llm_judge"): 0.2,  # regression
         },
     )

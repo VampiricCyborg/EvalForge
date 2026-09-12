@@ -1,0 +1,26 @@
+[
+  {
+    "test_case_id": "capital-france",
+    "output": "Lyon"
+  },
+  {
+    "test_case_id": "arithmetic-basic",
+    "output": "51"
+  },
+  {
+    "test_case_id": "explain-photosynthesis",
+    "output": "Photosynthesis is when animals break down food in their stomachs to release energy."
+  },
+  {
+    "test_case_id": "list-primes",
+    "output": "2, 3, 5, 7"
+  },
+  {
+    "test_case_id": "summarize-water-cycle",
+    "output": "Water evaporates from the surface, forms clouds, and returns to earth as rain or snow."
+  },
+  {
+    "test_case_id": "translate-greeting",
+    "output": "Buenos dias"
+  }
+]
